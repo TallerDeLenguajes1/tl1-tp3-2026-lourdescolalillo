@@ -3,6 +3,7 @@
 #include <string.h>
 //FUNCIONES
 void mostrarPersonas(char *nombres[],int cantidad);
+void buscarNombre(char *nombres[],int cantidad, int id);
 int main()
 {
     //vector con 5 punteros, cada uno para un nombre
@@ -12,6 +13,7 @@ int main()
 
     int i;
     int largo = 0;
+    int id_nombre;
     printf("\nINGRESO DE NOMBRES\n");
     for ( i = 0; i < 5; i++)
     {
@@ -31,6 +33,13 @@ int main()
     }
 
     mostrarPersonas(nombres_personas,5);
+
+    //pedir el id para la funcion buscar
+    printf("ingrese el id:");
+    scanf("%d",&id_nombre);
+
+    buscarNombre(nombres_personas,5,id_nombre);
+
     return 0;
 }
 
@@ -44,4 +53,15 @@ void mostrarPersonas(char *nombres[],int cantidad)
         printf("nombre de la persona #%d: %s\n",(i + 1),nombres[i]);
     }
 
+}
+
+void buscarNombre(char *nombres[],int cantidad, int id)
+{
+    if(id >= 0 && id <cantidad)
+    {
+        printf("nombre en id %d: %s\n",id ,nombres[id -1]);
+    }else{
+        printf("no se encontro el valor buscado\n");
+    }
+    
 }
