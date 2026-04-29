@@ -46,6 +46,11 @@ int main()
     }else{
         printf("no se encontro coincidencias");
     }
+    
+    //libero la memoria
+    for(i = 0; i < 5; i++) {
+        free(nombres_personas[i]);
+    }
 
     return 0;
 }
