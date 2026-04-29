@@ -3,18 +3,19 @@
 #include <string.h>
 //FUNCIONES
 void mostrarPersonas(char *nombres[],int cantidad);
-int buscarNombre(char *nombres[], int cantidad, char *palabra);
+int buscarNombrePorClave(char *nombres[], int cantidad, char *palabra);
+void buscarNombrePorId(char *nombres[],int cantidad, int id);
 int main()
 {
     //vector con 5 punteros, cada uno para un nombre
     char *nombres_personas[5];
     //borrador para guardar temporalmente los datos
     char buff[50];
-
     int i;
     int largo = 0;
     char clave[50];
     int id = 0;
+    int id_nombre;
     printf("\nINGRESO DE NOMBRES\n");
     for ( i = 0; i < 5; i++)
     {
@@ -38,7 +39,7 @@ int main()
     //pido al usuario ingresar la palabra clave
     printf("ingrese la palabra clave:\n");
     gets(clave);
-    id = buscarNombre(nombres_personas,5,clave);
+    id = buscarNombrePorClave(nombres_personas,5,clave);
 
     if(id != -1)
     {
@@ -51,6 +52,12 @@ int main()
     for(i = 0; i < 5; i++) {
         free(nombres_personas[i]);
     }
+
+    //pedir el id para la funcion buscar
+    printf("ingrese el id:");
+    scanf("%d",&id_nombre);
+
+    buscarNombrePorId(nombres_personas,5,id_nombre);
 
     return 0;
 }
@@ -67,7 +74,7 @@ void mostrarPersonas(char *nombres[],int cantidad)
 
 }
 
-int buscarNombre(char *nombres[], int cantidad, char *palabra)
+int buscarNombrePorClave(char *nombres[], int cantidad, char *palabra)
 {
     int i;
     for(i = 0; i < cantidad; i++)
@@ -78,4 +85,13 @@ int buscarNombre(char *nombres[], int cantidad, char *palabra)
         }
     }
     return -1;
+}
+void buscarNombrePorId(char *nombres[],int cantidad, int id)
+{
+    if(id >= 0 && id <cantidad)
+    {
+        printf("nombre en id %d: %s\n",id ,nombres[id -1]);
+    }else{
+        printf("no se encontro el valor buscado\n");
+    }
 }
