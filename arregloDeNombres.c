@@ -43,6 +43,8 @@ int main()
     printf("Ingrese 1: Busqueda por ID - ingrese 2: Busqueda por clave\n");
     printf("ingrese opcion de busqueda:");
     scanf("%d", &opcion);
+    //limpia el buffer
+    while (getchar() != '\n');
     
     if(opcion == 1)
     {
