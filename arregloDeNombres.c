@@ -36,29 +36,42 @@ int main()
 
     mostrarPersonas(nombres_personas,5);
 
-    //pido al usuario ingresar la palabra clave
-    printf("ingrese la palabra clave:\n");
-    gets(clave);
-    id = buscarNombrePorClave(nombres_personas,5,clave);
+    //interfaz de menu interactivo
 
-    if(id != -1)
-    {
-        printf("se encontro una coincidencia: %s\n",nombres_personas[id]);
-    }else{
-        printf("no se encontro coincidencias");
-    }
     
+    int opcion;
+    printf("Ingrese 1: Busqueda por ID - ingrese 2: Busqueda por clave\n");
+    printf("ingrese opcion de busqueda:");
+    scanf("%d", &opcion);
+    
+    if(opcion == 1)
+    {
+
+        //pedir el id para la funcion buscar
+        printf("ingrese el id:");
+        scanf(" %d",&id_nombre);
+
+        buscarNombrePorId(nombres_personas,5,id_nombre);
+
+            
+    }else if(opcion == 2){
+        //pido al usuario ingresar la palabra clave
+        printf("ingrese la palabra clave:\n");
+        gets(clave);
+        id = buscarNombrePorClave(nombres_personas,5,clave);
+
+        if(id != -1)
+            {
+                printf("se encontro una coincidencia: %s\n",nombres_personas[id]);
+            }else{
+                printf("no se encontro coincidencias");
+            }
+    }
+
     //libero la memoria
     for(i = 0; i < 5; i++) {
         free(nombres_personas[i]);
     }
-
-    //pedir el id para la funcion buscar
-    printf("ingrese el id:");
-    scanf("%d",&id_nombre);
-
-    buscarNombrePorId(nombres_personas,5,id_nombre);
-
     return 0;
 }
 
@@ -88,9 +101,9 @@ int buscarNombrePorClave(char *nombres[], int cantidad, char *palabra)
 }
 void buscarNombrePorId(char *nombres[],int cantidad, int id)
 {
-    if(id >= 0 && id <cantidad)
+    if(id >= 1 && id <= cantidad)
     {
-        printf("nombre en id %d: %s\n",id ,nombres[id -1]);
+        printf("nombre en id %d: %s\n",id ,nombres[id - 1]);
     }else{
         printf("no se encontro el valor buscado\n");
     }
